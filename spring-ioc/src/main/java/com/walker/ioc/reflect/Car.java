@@ -1,4 +1,4 @@
-package com.walker.reflect;
+package com.walker.ioc.reflect;
 
 import lombok.Getter;
 import lombok.Setter;
