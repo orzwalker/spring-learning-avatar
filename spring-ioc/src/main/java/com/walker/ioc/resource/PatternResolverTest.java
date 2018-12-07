@@ -1,6 +1,12 @@
 package com.walker.ioc.resource;
 
 import org.junit.Test;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
+import org.springframework.core.io.support.ResourcePatternResolver;
+
+import java.io.IOException;
+import java.net.URL;
 
 /**
  * @author walker
@@ -9,7 +15,10 @@ import org.junit.Test;
  */
 public class PatternResolverTest {
     @Test
-    public void getResources(){
-        
+    public void getResources() throws IOException {
+        ResourcePatternResolver resourcePatternResolver =new PathMatchingResourcePatternResolver();
+        Resource resource = resourcePatternResolver.getResource("classpath:resource.xml");
+        URL url = resource.getURL();
+        System.out.println(url);
     }
 }
