@@ -1,4 +1,4 @@
-package com.walker.ioc.resource;
+package com.walker.ioc.beanFactory;
 
 import com.walker.ioc.reflect.Car;
 import org.junit.Test;
@@ -16,28 +16,28 @@ import java.net.URL;
 /**
  * @author walker
  * @version 1.0
- * @since 2018-12-05 19:04
+ * @since 2018-12-12 13:17
  */
-public class PatternResolverTest {
+public class BeanFactoryTest{
 
-    private static final Logger logger = LoggerFactory.getLogger(PatternResolverTest.class);
+    private static Logger logger = LoggerFactory.getLogger(BeanFactoryTest.class);
 
     @Test
-    public void getResources() throws IOException {
-        ResourcePatternResolver resourcePatternResolver = new PathMatchingResourcePatternResolver();
-        Resource resource = resourcePatternResolver.getResource("classpath:resource.xml");
+    public void getBean() throws IOException{
+        ResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
+        Resource resource = resolver.getResource("classpath:resource.xml");
         URL url = resource.getURL();
-        System.out.println(url);
+        logger.info(url.toString());
 
-        /** XmlBeanFactory在spring3.2中已被废弃，建议使用DefaultListableBeanFactory、XmlBeanDefinitionReader代替 */
         DefaultListableBeanFactory factory = new DefaultListableBeanFactory();
         XmlBeanDefinitionReader reader = new XmlBeanDefinitionReader(factory);
         reader.loadBeanDefinitions(resource);
 
-        logger.info("init BeanFactory...");
+        logger.info("init factory...");
 
         Car car = factory.getBean("car", Car.class);
         logger.info("car beanLifecycle is ready for use...");
         car.introduce();
+
     }
 }
