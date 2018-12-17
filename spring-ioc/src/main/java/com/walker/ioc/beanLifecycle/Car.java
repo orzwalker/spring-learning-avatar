@@ -1,5 +1,6 @@
 package com.walker.ioc.beanLifecycle;
 
+import lombok.Data;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
@@ -14,6 +15,7 @@ import org.springframework.beans.factory.InitializingBean;
  * @version 1.0
  * @since 2018-12-16 23:59
  */
+@Data
 public class Car implements BeanFactoryAware, BeanNameAware, InitializingBean, DisposableBean {
 
     private static Logger logger = LoggerFactory.getLogger(Car.class);
